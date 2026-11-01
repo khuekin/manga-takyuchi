@@ -18,6 +18,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Tự động sửa lỗi cú pháp
+      run: |
+        cd TachiyomiDriveApp
+        # Xóa dòng play-services bị lỗi dấu gạch ngang
+        sed -i '/play-services/d' app/build.gradle.kts
+        # Sửa hàm lưu trang trong MainActivity
+        sed -i 's/mutableIntOrNullStateOf(1)/mutableStateOf(1)/g' app/src/main/java/com/tachiyomi/drive/MainActivity.kt
+
     - name: Set up Gradle 8.7
       uses: gradle/actions/setup-gradle@v3
       with:
@@ -26,15 +34,12 @@ jobs:
 
     - name: Build APK with Gradle
       run: |
-        if [ -d "TachiyomiDriveApp" ]; then
-          cd TachiyomiDriveApp
-        fi
+        cd TachiyomiDriveApp
         gradle assembleDebug --stacktrace --no-daemon
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
         name: TachiyomiDrive-Debug-APK
-        path: |
-          **/build/outputs/apk/debug/*.apk
+        path: TachiyomiDriveApp/app/build/outputs/apk/debug/*.apk
         retention-days: 14
