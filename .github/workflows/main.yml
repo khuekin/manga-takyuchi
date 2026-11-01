@@ -18,12 +18,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Tự động sửa lỗi cú pháp
+    - name: Tự động sửa thư viện và mã nguồn
       run: |
         cd TachiyomiDriveApp
-        # Xóa dòng play-services bị lỗi dấu gạch ngang
+        # 1. Sửa phiên bản thư viện Google Drive sang bản chuẩn chính thức trên Maven Central
+        sed -i 's/v3-rev20240502-2.0.0/v3-rev20220815-2.0.0/g' gradle/libs.versions.toml
+        # 2. Xóa dòng play-services bị lỗi dấu gạch ngang
         sed -i '/play-services/d' app/build.gradle.kts
-        # Sửa hàm lưu trang trong MainActivity
+        # 3. Sửa hàm lưu trang trong MainActivity
         sed -i 's/mutableIntOrNullStateOf(1)/mutableStateOf(1)/g' app/src/main/java/com/tachiyomi/drive/MainActivity.kt
 
     - name: Set up Gradle 8.7
