@@ -18,12 +18,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Tự động sửa thư viện và mã nguồn
+    - name: Tu dong sua thu vien va ma nguon doc PDF
       run: |
         cd TachiyomiDriveApp
-        # 1. Sửa phiên bản thư viện Google Drive sang bản chuẩn chính thức trên Maven Central
+        # 1. Sửa thư viện Drive sang bản chuẩn trên Maven Central
         sed -i 's/v3-rev20240502-2.0.0/v3-rev20220815-2.0.0/g' gradle/libs.versions.toml
-        # 2. Xóa dòng play-services bị lỗi dấu gạch ngang
+        # 2. Xóa dòng play-services bị lỗi
         sed -i '/play-services/d' app/build.gradle.kts
         # 3. Sửa hàm lưu trang trong MainActivity
         sed -i 's/mutableIntOrNullStateOf(1)/mutableStateOf(1)/g' app/src/main/java/com/tachiyomi/drive/MainActivity.kt
@@ -45,3 +45,4 @@ jobs:
         name: TachiyomiDrive-Debug-APK
         path: TachiyomiDriveApp/app/build/outputs/apk/debug/*.apk
         retention-days: 14
+        
