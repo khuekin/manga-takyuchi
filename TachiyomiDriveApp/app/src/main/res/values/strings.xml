@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tachiyomi Drive</string>
+    <string name="library_title">Thư viện</string>
+    <string name="history_title">Lịch sử</string>
+    <string name="browse_title">Google Drive</string>
+    <string name="settings_title">Cài đặt</string>
+    <string name="resume_reading">Đọc tiếp</string>
+    <string name="chapters_count">%d chương</string>
+</resources>

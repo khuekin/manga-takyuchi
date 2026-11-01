@@ -1,0 +1,7 @@
+<resources>
+    <color name="tachiyomi_bg">#121212</color>
+    <color name="tachiyomi_surface">#1E1E1E</color>
+    <color name="tachiyomi_accent">#00B0FF</color>
+    <color name="tachiyomi_text">#EEEEEE</color>
+    <color name="tachiyomi_text_secondary">#9E9E9E</color>
+</resources>
